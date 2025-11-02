@@ -522,6 +522,13 @@ pub fn using_declarations_must_be_initialized(span: Span) -> OxcDiagnostic {
 }
 
 #[cold]
+pub fn using_declaration_not_allowed_in_switch_bare_case(span: Span) -> OxcDiagnostic {
+    OxcDiagnostic::error("Using declaration cannot appear in the bare case statement.")
+        .with_label(span)
+        .with_help("Wrap this declaration in a block statement")
+}
+
+#[cold]
 pub fn jsx_element_no_match(span: Span, span1: Span, name: &str) -> OxcDiagnostic {
     OxcDiagnostic::error(format!("Expected corresponding JSX closing tag for '{name}'."))
         .with_labels([span, span1])

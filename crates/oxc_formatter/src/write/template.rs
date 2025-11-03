@@ -37,11 +37,22 @@ impl<'a> FormatWrite<'a> for AstNode<'a, TemplateLiteral<'a>> {
 impl<'a> FormatWrite<'a> for AstNode<'a, TaggedTemplateExpression<'a>> {
     fn write(&self, f: &mut Formatter<'_, 'a>) -> FormatResult<()> {
         // Format the tag and type arguments
-        write!(f, [self.tag(), self.type_arguments(), line_suffix_boundary()])?;
+        write!(f, [self.tag(), self.type_arguments()])?;
 
         let quasi = self.quasi();
 
-        quasi.format_leading_comments(f);
+        let comments = f.context().comments().comments_before(quasi.span.start);
+        if !comments.is_empty() {
+            write!(
+                f,
+                [group(&format_args!(
+                    soft_line_break_or_space(),
+                    FormatLeadingComments::Comments(comments)
+                ))]
+            )?;
+        }
+
+        write!(f, [line_suffix_boundary()])?;
 
         if is_test_each_pattern(&self.tag) {
             let template = &EachTemplateTable::from_template(quasi, f)?;

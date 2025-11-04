@@ -3,15 +3,7 @@
 
 # stdout
 ```
-  x test-plugin(no-var): Use let or const instead of var
-   ,-[files/index.js:3:1]
- 2 | 
- 3 | var shouldError = 1;
-   : ^^^^^^^^^^^^^^^^^^^^
- 4 | 
-   `----
-
-  x ]8;;https://oxc.rs/docs/guide/usage/linter/rules/eslint/no-debugger.html\eslint(no-debugger)]8;;\: `debugger` statement is not allowed
+  x eslint(no-debugger): `debugger` statement is not allowed
     ,-[files/index.js:12:1]
  11 | // should trigger an error
  12 | debugger;
@@ -19,6 +11,14 @@
  13 | 
     `----
   help: Remove the debugger statement
+
+  x test-plugin(no-var): Use let or const instead of var
+   ,-[files/index.js:3:1]
+ 2 | 
+ 3 | var shouldError = 1;
+   : ^^^^^^^^^^^^^^^^^^^^
+ 4 | 
+   `----
 
   x test-plugin(no-var): Use let or const instead of var
     ,-[files/index.js:18:1]

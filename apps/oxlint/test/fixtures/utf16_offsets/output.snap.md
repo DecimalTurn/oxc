@@ -3,7 +3,7 @@
 
 # stdout
 ```
-  ! ]8;;https://oxc.rs/docs/guide/usage/linter/rules/eslint/no-debugger.html\eslint(no-debugger)]8;;\: `debugger` statement is not allowed
+  ! eslint(no-debugger): `debugger` statement is not allowed
    ,-[files/index.js:1:1]
  1 | debugger;
    : ^^^^^^^^^
@@ -11,15 +11,23 @@
    `----
   help: Remove the debugger statement
 
-  x utf16-plugin(no-debugger): debugger:
-  | start/end: [0,9]
-  | range: [0,9]
-  | loc: [{"start":{"line":1,"column":0},"end":{"line":1,"column":9}}]
-   ,-[files/index.js:1:1]
- 1 | debugger;
-   : ^^^^^^^^^
+  ! eslint(no-debugger): `debugger` statement is not allowed
+   ,-[files/index.js:3:1]
  2 | // £
+ 3 | debugger;
+   : ^^^^^^^^^
+ 4 | // 🤨
    `----
+  help: Remove the debugger statement
+
+  ! eslint(no-debugger): `debugger` statement is not allowed
+   ,-[files/index.js:6:3]
+ 5 | {
+ 6 |   debugger;
+   :   ^^^^^^^^^
+ 7 | }
+   `----
+  help: Remove the debugger statement
 
   x utf16-plugin(no-debugger): program:
   | start/end: [0,47]
@@ -35,14 +43,15 @@
  7 | `-> }
    `----
 
-  ! ]8;;https://oxc.rs/docs/guide/usage/linter/rules/eslint/no-debugger.html\eslint(no-debugger)]8;;\: `debugger` statement is not allowed
-   ,-[files/index.js:3:1]
- 2 | // £
- 3 | debugger;
+  x utf16-plugin(no-debugger): debugger:
+  | start/end: [0,9]
+  | range: [0,9]
+  | loc: [{"start":{"line":1,"column":0},"end":{"line":1,"column":9}}]
+   ,-[files/index.js:1:1]
+ 1 | debugger;
    : ^^^^^^^^^
- 4 | // 🤨
+ 2 | // £
    `----
-  help: Remove the debugger statement
 
   x utf16-plugin(no-debugger): debugger:
   | start/end: [15,24]
@@ -54,15 +63,6 @@
    : ^^^^^^^^^
  4 | // 🤨
    `----
-
-  ! ]8;;https://oxc.rs/docs/guide/usage/linter/rules/eslint/no-debugger.html\eslint(no-debugger)]8;;\: `debugger` statement is not allowed
-   ,-[files/index.js:6:3]
- 5 | {
- 6 |   debugger;
-   :   ^^^^^^^^^
- 7 | }
-   `----
-  help: Remove the debugger statement
 
   x utf16-plugin(no-debugger): debugger:
   | start/end: [35,44]

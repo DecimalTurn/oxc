@@ -3,18 +3,18 @@
 
 # stdout
 ```
-  x loc-plugin(no-bugger): Bugger!
-   ,-[files/index.js:1:3]
- 1 | debugger;
-   :   ^^^^^^
- 2 | debugger;
-   `----
-
   x loc-plugin(no-bugger): Bugger debugger debug!
    ,-[files/index.js:1:3]
  1 | ,-> debugger;
  2 | |   debugger;
  3 | `-> debugger;
+   `----
+
+  x loc-plugin(no-bugger): Bugger!
+   ,-[files/index.js:1:3]
+ 1 | debugger;
+   :   ^^^^^^
+ 2 | debugger;
    `----
 
   x loc-plugin(no-bugger): Bugger!

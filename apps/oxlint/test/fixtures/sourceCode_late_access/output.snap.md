@@ -4,15 +4,65 @@
 # stdout
 ```
   x source-code-plugin(create): program:
-  | text: "let foo, bar;\n"
-  | getText(): "let foo, bar;\n"
-   ,-[files/1.js:1:1]
- 1 | let foo, bar;
+  | text: "let qux;\n"
+  | getText(): "let qux;\n"
+   ,-[files/2.js:1:1]
+ 1 | let qux;
    : ^
    `----
 
+  x source-code-plugin(create-once): program:
+  | text: "let qux;\n"
+  | getText(): "let qux;\n"
+   ,-[files/2.js:1:1]
+ 1 | let qux;
+   : ^
+   `----
+
+  x source-code-plugin(create): var decl:
+  | source: "let qux;"
+   ,-[files/2.js:1:1]
+ 1 | let qux;
+   : ^^^^^^^^
+   `----
+
+  x source-code-plugin(create-once): var decl:
+  | source: "let qux;"
+   ,-[files/2.js:1:1]
+ 1 | let qux;
+   : ^^^^^^^^
+   `----
+
+  x source-code-plugin(create): ident "qux":
+  | source: "qux"
+  | source with before: "t qux"
+  | source with after: "qux;"
+  | source with both: "t qux;"
+   ,-[files/2.js:1:5]
+ 1 | let qux;
+   :     ^^^
+   `----
+
+  x source-code-plugin(create-once): ident "qux":
+  | source: "qux"
+  | source with before: "t qux"
+  | source with after: "qux;"
+  | source with both: "t qux;"
+   ,-[files/2.js:1:5]
+ 1 | let qux;
+   :     ^^^
+   `----
+
   x source-code-plugin(create-once): after:
-  | source: "let foo, bar;\n"
+  | source: "let qux;\n"
+   ,-[files/2.js:1:1]
+ 1 | let qux;
+   : ^
+   `----
+
+  x source-code-plugin(create): program:
+  | text: "let foo, bar;\n"
+  | getText(): "let foo, bar;\n"
    ,-[files/1.js:1:1]
  1 | let foo, bar;
    : ^
@@ -80,61 +130,11 @@
    :          ^^^
    `----
 
-  x source-code-plugin(create): program:
-  | text: "let qux;\n"
-  | getText(): "let qux;\n"
-   ,-[files/2.js:1:1]
- 1 | let qux;
-   : ^
-   `----
-
   x source-code-plugin(create-once): after:
-  | source: "let qux;\n"
-   ,-[files/2.js:1:1]
- 1 | let qux;
+  | source: "let foo, bar;\n"
+   ,-[files/1.js:1:1]
+ 1 | let foo, bar;
    : ^
-   `----
-
-  x source-code-plugin(create-once): program:
-  | text: "let qux;\n"
-  | getText(): "let qux;\n"
-   ,-[files/2.js:1:1]
- 1 | let qux;
-   : ^
-   `----
-
-  x source-code-plugin(create): var decl:
-  | source: "let qux;"
-   ,-[files/2.js:1:1]
- 1 | let qux;
-   : ^^^^^^^^
-   `----
-
-  x source-code-plugin(create-once): var decl:
-  | source: "let qux;"
-   ,-[files/2.js:1:1]
- 1 | let qux;
-   : ^^^^^^^^
-   `----
-
-  x source-code-plugin(create): ident "qux":
-  | source: "qux"
-  | source with before: "t qux"
-  | source with after: "qux;"
-  | source with both: "t qux;"
-   ,-[files/2.js:1:5]
- 1 | let qux;
-   :     ^^^
-   `----
-
-  x source-code-plugin(create-once): ident "qux":
-  | source: "qux"
-  | source with before: "t qux"
-  | source with after: "qux;"
-  | source with both: "t qux;"
-   ,-[files/2.js:1:5]
- 1 | let qux;
-   :     ^^^
    `----
 
 Found 0 warnings and 16 errors.

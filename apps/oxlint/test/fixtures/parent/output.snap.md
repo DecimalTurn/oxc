@@ -3,14 +3,6 @@
 
 # stdout
 ```
-  x parents(check): VariableDeclaration:
-  | parent: Program
-  | ancestors: [ Program ]
-   ,-[files/index.js:1:1]
- 1 | const obj = { a: [b, c], ...d };
-   : ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-   `----
-
   x parents(check): Program:
   | parent: undefined
   | ancestors: [  ]
@@ -19,12 +11,12 @@
    : ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
    `----
 
-  x parents(check): Identifier:
-  | parent: VariableDeclarator
-  | ancestors: [ Program, VariableDeclaration, VariableDeclarator ]
-   ,-[files/index.js:1:7]
+  x parents(check): VariableDeclaration:
+  | parent: Program
+  | ancestors: [ Program ]
+   ,-[files/index.js:1:1]
  1 | const obj = { a: [b, c], ...d };
-   :       ^^^
+   : ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
    `----
 
   x parents(check): VariableDeclarator:
@@ -35,6 +27,14 @@
    :       ^^^^^^^^^^^^^^^^^^^^^^^^^
    `----
 
+  x parents(check): Identifier:
+  | parent: VariableDeclarator
+  | ancestors: [ Program, VariableDeclaration, VariableDeclarator ]
+   ,-[files/index.js:1:7]
+ 1 | const obj = { a: [b, c], ...d };
+   :       ^^^
+   `----
+
   x parents(check): ObjectExpression:
   | parent: VariableDeclarator
   | ancestors: [ Program, VariableDeclaration, VariableDeclarator ]
@@ -43,20 +43,20 @@
    :             ^^^^^^^^^^^^^^^^^^^
    `----
 
-  x parents(check): Identifier:
-  | parent: Property
-  | ancestors: [ Program, VariableDeclaration, VariableDeclarator, ObjectExpression, Property ]
-   ,-[files/index.js:1:15]
- 1 | const obj = { a: [b, c], ...d };
-   :               ^
-   `----
-
   x parents(check): Property:
   | parent: ObjectExpression
   | ancestors: [ Program, VariableDeclaration, VariableDeclarator, ObjectExpression ]
    ,-[files/index.js:1:15]
  1 | const obj = { a: [b, c], ...d };
    :               ^^^^^^^^^
+   `----
+
+  x parents(check): Identifier:
+  | parent: Property
+  | ancestors: [ Program, VariableDeclaration, VariableDeclarator, ObjectExpression, Property ]
+   ,-[files/index.js:1:15]
+ 1 | const obj = { a: [b, c], ...d };
+   :               ^
    `----
 
   x parents(check): ArrayExpression:

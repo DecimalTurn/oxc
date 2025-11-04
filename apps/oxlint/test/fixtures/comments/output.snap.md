@@ -3,17 +3,168 @@
 
 # stdout
 ```
+  x test-comments(test-comments): getAllComments: 0 comments
+    ,-[files/no_comments.js:1:1]
+  1 | ,-> const topLevelVariable1 = 1;
+  2 | |   const topLevelVariable2 = 2;
+  3 | |   
+  4 | |   export function topLevelFunction() {
+  5 | |     let functionScopedVariable = topLevelVariable;
+  6 | |     function nestedFunction() {
+  7 | |       return functionScopedVariable;
+  8 | |     }
+  9 | |     return nestedFunction();
+ 10 | |   }
+ 11 | |   
+ 12 | |   const topLevelVariable3 = 3;
+ 13 | |   const topLevelVariable4 = 4;
+ 14 | |   const topLevelVariable5 = 5;
+ 15 | |   const topLevelVariable6 = 6;
+ 16 | `-> const topLevelVariable7 = 7;
+    `----
+
+  x test-comments(test-comments): commentsExistBetween(topLevelVariable2, topLevelFunction): false
+   ,-[files/no_comments.js:2:1]
+ 1 | const topLevelVariable1 = 1;
+ 2 | const topLevelVariable2 = 2;
+   : ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 3 | 
+   `----
+
+  x test-comments(test-comments): commentsExistBetween(topLevelFunction, topLevelVariable2): false
+    ,-[files/no_comments.js:4:8]
+  3 |     
+  4 | ,-> export function topLevelFunction() {
+  5 | |     let functionScopedVariable = topLevelVariable;
+  6 | |     function nestedFunction() {
+  7 | |       return functionScopedVariable;
+  8 | |     }
+  9 | |     return nestedFunction();
+ 10 | `-> }
+ 11 |     
+    `----
+
   x test-comments(test-comments): VariableDeclaration(topLevelVariable1):
   | getCommentsBefore: 0 comments
   | getCommentsInside: 0 comments
-  | getCommentsAfter: 1 comment
-  |   [0] Line: " Line comment 1" at [29, 46]
+  | getCommentsAfter: 0 comments
   | commentsExistBetween(id, init): false
-   ,-[files/comments.js:1:1]
+   ,-[files/no_comments.js:1:1]
  1 | const topLevelVariable1 = 1;
    : ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
- 2 | // Line comment 1
+ 2 | const topLevelVariable2 = 2;
    `----
+
+  x test-comments(test-comments): VariableDeclaration(topLevelVariable2):
+  | getCommentsBefore: 0 comments
+  | getCommentsInside: 0 comments
+  | getCommentsAfter: 0 comments
+  | commentsExistBetween(id, init): false
+   ,-[files/no_comments.js:2:1]
+ 1 | const topLevelVariable1 = 1;
+ 2 | const topLevelVariable2 = 2;
+   : ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 3 | 
+   `----
+
+  x test-comments(test-comments): FunctionDeclaration(topLevelFunction):
+  | getCommentsBefore: 0 comments
+  | getCommentsInside: 0 comments
+  | getCommentsAfter: 0 comments
+    ,-[files/no_comments.js:4:8]
+  3 |     
+  4 | ,-> export function topLevelFunction() {
+  5 | |     let functionScopedVariable = topLevelVariable;
+  6 | |     function nestedFunction() {
+  7 | |       return functionScopedVariable;
+  8 | |     }
+  9 | |     return nestedFunction();
+ 10 | `-> }
+ 11 |     
+    `----
+
+  x test-comments(test-comments): VariableDeclaration(functionScopedVariable):
+  | getCommentsBefore: 0 comments
+  | getCommentsInside: 0 comments
+  | getCommentsAfter: 0 comments
+  | commentsExistBetween(id, init): false
+   ,-[files/no_comments.js:5:3]
+ 4 | export function topLevelFunction() {
+ 5 |   let functionScopedVariable = topLevelVariable;
+   :   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 6 |   function nestedFunction() {
+   `----
+
+  x test-comments(test-comments): FunctionDeclaration(nestedFunction):
+  | getCommentsBefore: 0 comments
+  | getCommentsInside: 0 comments
+  | getCommentsAfter: 0 comments
+   ,-[files/no_comments.js:6:3]
+ 5 |       let functionScopedVariable = topLevelVariable;
+ 6 | ,->   function nestedFunction() {
+ 7 | |       return functionScopedVariable;
+ 8 | `->   }
+ 9 |       return nestedFunction();
+   `----
+
+  x test-comments(test-comments): VariableDeclaration(topLevelVariable3):
+  | getCommentsBefore: 0 comments
+  | getCommentsInside: 0 comments
+  | getCommentsAfter: 0 comments
+  | commentsExistBetween(id, init): false
+    ,-[files/no_comments.js:12:1]
+ 11 | 
+ 12 | const topLevelVariable3 = 3;
+    : ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 13 | const topLevelVariable4 = 4;
+    `----
+
+  x test-comments(test-comments): VariableDeclaration(topLevelVariable4):
+  | getCommentsBefore: 0 comments
+  | getCommentsInside: 0 comments
+  | getCommentsAfter: 0 comments
+  | commentsExistBetween(id, init): false
+    ,-[files/no_comments.js:13:1]
+ 12 | const topLevelVariable3 = 3;
+ 13 | const topLevelVariable4 = 4;
+    : ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 14 | const topLevelVariable5 = 5;
+    `----
+
+  x test-comments(test-comments): VariableDeclaration(topLevelVariable5):
+  | getCommentsBefore: 0 comments
+  | getCommentsInside: 0 comments
+  | getCommentsAfter: 0 comments
+  | commentsExistBetween(id, init): false
+    ,-[files/no_comments.js:14:1]
+ 13 | const topLevelVariable4 = 4;
+ 14 | const topLevelVariable5 = 5;
+    : ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 15 | const topLevelVariable6 = 6;
+    `----
+
+  x test-comments(test-comments): VariableDeclaration(topLevelVariable6):
+  | getCommentsBefore: 0 comments
+  | getCommentsInside: 0 comments
+  | getCommentsAfter: 0 comments
+  | commentsExistBetween(id, init): false
+    ,-[files/no_comments.js:15:1]
+ 14 | const topLevelVariable5 = 5;
+ 15 | const topLevelVariable6 = 6;
+    : ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 16 | const topLevelVariable7 = 7;
+    `----
+
+  x test-comments(test-comments): VariableDeclaration(topLevelVariable7):
+  | getCommentsBefore: 0 comments
+  | getCommentsInside: 0 comments
+  | getCommentsAfter: 0 comments
+  | commentsExistBetween(id, init): false
+    ,-[files/no_comments.js:16:1]
+ 15 | const topLevelVariable6 = 6;
+ 16 | const topLevelVariable7 = 7;
+    : ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    `----
 
   x test-comments(test-comments): getAllComments: 12 comments
   |   [0] Line: " Line comment 1" at [29, 46]
@@ -63,21 +214,6 @@
  32 | `-> const topLevelVariable7 = 7;
     `----
 
-  x test-comments(test-comments): VariableDeclaration(topLevelVariable2):
-  | getCommentsBefore: 1 comment
-  |   [0] Line: " Line comment 1" at [29, 46]
-  | getCommentsInside: 0 comments
-  | getCommentsAfter: 2 comments
-  |   [0] Block: " Block comment 1 " at [76, 97]
-  |   [1] Block: "*\n * JSDoc comment\n " at [99, 123]
-  | commentsExistBetween(id, init): false
-   ,-[files/comments.js:3:1]
- 2 | // Line comment 1
- 3 | const topLevelVariable2 = 2; /* Block comment 1 */
-   : ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
- 4 | 
-   `----
-
   x test-comments(test-comments): commentsExistBetween(topLevelVariable2, topLevelFunction): true
    ,-[files/comments.js:3:1]
  2 | // Line comment 1
@@ -104,6 +240,33 @@
  20 | `-> }
  21 |     
     `----
+
+  x test-comments(test-comments): VariableDeclaration(topLevelVariable1):
+  | getCommentsBefore: 0 comments
+  | getCommentsInside: 0 comments
+  | getCommentsAfter: 1 comment
+  |   [0] Line: " Line comment 1" at [29, 46]
+  | commentsExistBetween(id, init): false
+   ,-[files/comments.js:1:1]
+ 1 | const topLevelVariable1 = 1;
+   : ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 2 | // Line comment 1
+   `----
+
+  x test-comments(test-comments): VariableDeclaration(topLevelVariable2):
+  | getCommentsBefore: 1 comment
+  |   [0] Line: " Line comment 1" at [29, 46]
+  | getCommentsInside: 0 comments
+  | getCommentsAfter: 2 comments
+  |   [0] Block: " Block comment 1 " at [76, 97]
+  |   [1] Block: "*\n * JSDoc comment\n " at [99, 123]
+  | commentsExistBetween(id, init): false
+   ,-[files/comments.js:3:1]
+ 2 | // Line comment 1
+ 3 | const topLevelVariable2 = 2; /* Block comment 1 */
+   : ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 4 | 
+   `----
 
   x test-comments(test-comments): FunctionDeclaration(topLevelFunction):
   | getCommentsBefore: 0 comments
@@ -225,169 +388,6 @@
     ,-[files/comments.js:32:1]
  31 | const topLevelVariable6 = 6;
  32 | const topLevelVariable7 = 7;
-    : ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    `----
-
-  x test-comments(test-comments): VariableDeclaration(topLevelVariable1):
-  | getCommentsBefore: 0 comments
-  | getCommentsInside: 0 comments
-  | getCommentsAfter: 0 comments
-  | commentsExistBetween(id, init): false
-   ,-[files/no_comments.js:1:1]
- 1 | const topLevelVariable1 = 1;
-   : ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
- 2 | const topLevelVariable2 = 2;
-   `----
-
-  x test-comments(test-comments): getAllComments: 0 comments
-    ,-[files/no_comments.js:1:1]
-  1 | ,-> const topLevelVariable1 = 1;
-  2 | |   const topLevelVariable2 = 2;
-  3 | |   
-  4 | |   export function topLevelFunction() {
-  5 | |     let functionScopedVariable = topLevelVariable;
-  6 | |     function nestedFunction() {
-  7 | |       return functionScopedVariable;
-  8 | |     }
-  9 | |     return nestedFunction();
- 10 | |   }
- 11 | |   
- 12 | |   const topLevelVariable3 = 3;
- 13 | |   const topLevelVariable4 = 4;
- 14 | |   const topLevelVariable5 = 5;
- 15 | |   const topLevelVariable6 = 6;
- 16 | `-> const topLevelVariable7 = 7;
-    `----
-
-  x test-comments(test-comments): commentsExistBetween(topLevelVariable2, topLevelFunction): false
-   ,-[files/no_comments.js:2:1]
- 1 | const topLevelVariable1 = 1;
- 2 | const topLevelVariable2 = 2;
-   : ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
- 3 | 
-   `----
-
-  x test-comments(test-comments): VariableDeclaration(topLevelVariable2):
-  | getCommentsBefore: 0 comments
-  | getCommentsInside: 0 comments
-  | getCommentsAfter: 0 comments
-  | commentsExistBetween(id, init): false
-   ,-[files/no_comments.js:2:1]
- 1 | const topLevelVariable1 = 1;
- 2 | const topLevelVariable2 = 2;
-   : ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
- 3 | 
-   `----
-
-  x test-comments(test-comments): commentsExistBetween(topLevelFunction, topLevelVariable2): false
-    ,-[files/no_comments.js:4:8]
-  3 |     
-  4 | ,-> export function topLevelFunction() {
-  5 | |     let functionScopedVariable = topLevelVariable;
-  6 | |     function nestedFunction() {
-  7 | |       return functionScopedVariable;
-  8 | |     }
-  9 | |     return nestedFunction();
- 10 | `-> }
- 11 |     
-    `----
-
-  x test-comments(test-comments): FunctionDeclaration(topLevelFunction):
-  | getCommentsBefore: 0 comments
-  | getCommentsInside: 0 comments
-  | getCommentsAfter: 0 comments
-    ,-[files/no_comments.js:4:8]
-  3 |     
-  4 | ,-> export function topLevelFunction() {
-  5 | |     let functionScopedVariable = topLevelVariable;
-  6 | |     function nestedFunction() {
-  7 | |       return functionScopedVariable;
-  8 | |     }
-  9 | |     return nestedFunction();
- 10 | `-> }
- 11 |     
-    `----
-
-  x test-comments(test-comments): VariableDeclaration(functionScopedVariable):
-  | getCommentsBefore: 0 comments
-  | getCommentsInside: 0 comments
-  | getCommentsAfter: 0 comments
-  | commentsExistBetween(id, init): false
-   ,-[files/no_comments.js:5:3]
- 4 | export function topLevelFunction() {
- 5 |   let functionScopedVariable = topLevelVariable;
-   :   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
- 6 |   function nestedFunction() {
-   `----
-
-  x test-comments(test-comments): FunctionDeclaration(nestedFunction):
-  | getCommentsBefore: 0 comments
-  | getCommentsInside: 0 comments
-  | getCommentsAfter: 0 comments
-   ,-[files/no_comments.js:6:3]
- 5 |       let functionScopedVariable = topLevelVariable;
- 6 | ,->   function nestedFunction() {
- 7 | |       return functionScopedVariable;
- 8 | `->   }
- 9 |       return nestedFunction();
-   `----
-
-  x test-comments(test-comments): VariableDeclaration(topLevelVariable3):
-  | getCommentsBefore: 0 comments
-  | getCommentsInside: 0 comments
-  | getCommentsAfter: 0 comments
-  | commentsExistBetween(id, init): false
-    ,-[files/no_comments.js:12:1]
- 11 | 
- 12 | const topLevelVariable3 = 3;
-    : ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
- 13 | const topLevelVariable4 = 4;
-    `----
-
-  x test-comments(test-comments): VariableDeclaration(topLevelVariable4):
-  | getCommentsBefore: 0 comments
-  | getCommentsInside: 0 comments
-  | getCommentsAfter: 0 comments
-  | commentsExistBetween(id, init): false
-    ,-[files/no_comments.js:13:1]
- 12 | const topLevelVariable3 = 3;
- 13 | const topLevelVariable4 = 4;
-    : ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
- 14 | const topLevelVariable5 = 5;
-    `----
-
-  x test-comments(test-comments): VariableDeclaration(topLevelVariable5):
-  | getCommentsBefore: 0 comments
-  | getCommentsInside: 0 comments
-  | getCommentsAfter: 0 comments
-  | commentsExistBetween(id, init): false
-    ,-[files/no_comments.js:14:1]
- 13 | const topLevelVariable4 = 4;
- 14 | const topLevelVariable5 = 5;
-    : ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
- 15 | const topLevelVariable6 = 6;
-    `----
-
-  x test-comments(test-comments): VariableDeclaration(topLevelVariable6):
-  | getCommentsBefore: 0 comments
-  | getCommentsInside: 0 comments
-  | getCommentsAfter: 0 comments
-  | commentsExistBetween(id, init): false
-    ,-[files/no_comments.js:15:1]
- 14 | const topLevelVariable5 = 5;
- 15 | const topLevelVariable6 = 6;
-    : ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
- 16 | const topLevelVariable7 = 7;
-    `----
-
-  x test-comments(test-comments): VariableDeclaration(topLevelVariable7):
-  | getCommentsBefore: 0 comments
-  | getCommentsInside: 0 comments
-  | getCommentsAfter: 0 comments
-  | commentsExistBetween(id, init): false
-    ,-[files/no_comments.js:16:1]
- 15 | const topLevelVariable6 = 6;
- 16 | const topLevelVariable7 = 7;
     : ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     `----
 

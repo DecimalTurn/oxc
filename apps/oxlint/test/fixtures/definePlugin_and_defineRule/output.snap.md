@@ -19,21 +19,6 @@
    : ^
    `----
 
-  x define-plugin-and-rule-plugin(create-once): after hook:
-  | identNum: 2
-  | filename: files/1.js
-   ,-[files/1.js:1:1]
- 1 | let a, b;
-   : ^
-   `----
-
-  x define-plugin-and-rule-plugin(create-once-after-only): after hook:
-  | filename: files/1.js
-   ,-[files/1.js:1:1]
- 1 | let a, b;
-   : ^
-   `----
-
   x define-plugin-and-rule-plugin(create-once-before-false): before hook:
   | filename: files/1.js
    ,-[files/1.js:1:1]
@@ -63,14 +48,14 @@
    :     ^
    `----
 
-  x define-plugin-and-rule-plugin(create-once-after-only): ident visit fn "a":
+  x define-plugin-and-rule-plugin(create-once-before-only): ident visit fn "a":
   | filename: files/1.js
    ,-[files/1.js:1:5]
  1 | let a, b;
    :     ^
    `----
 
-  x define-plugin-and-rule-plugin(create-once-before-only): ident visit fn "a":
+  x define-plugin-and-rule-plugin(create-once-after-only): ident visit fn "a":
   | filename: files/1.js
    ,-[files/1.js:1:5]
  1 | let a, b;
@@ -99,14 +84,14 @@
    :        ^
    `----
 
-  x define-plugin-and-rule-plugin(create-once-after-only): ident visit fn "b":
+  x define-plugin-and-rule-plugin(create-once-before-only): ident visit fn "b":
   | filename: files/1.js
    ,-[files/1.js:1:8]
  1 | let a, b;
    :        ^
    `----
 
-  x define-plugin-and-rule-plugin(create-once-before-only): ident visit fn "b":
+  x define-plugin-and-rule-plugin(create-once-after-only): ident visit fn "b":
   | filename: files/1.js
    ,-[files/1.js:1:8]
  1 | let a, b;
@@ -118,6 +103,21 @@
    ,-[files/1.js:1:8]
  1 | let a, b;
    :        ^
+   `----
+
+  x define-plugin-and-rule-plugin(create-once): after hook:
+  | identNum: 2
+  | filename: files/1.js
+   ,-[files/1.js:1:1]
+ 1 | let a, b;
+   : ^
+   `----
+
+  x define-plugin-and-rule-plugin(create-once-after-only): after hook:
+  | filename: files/1.js
+   ,-[files/1.js:1:1]
+ 1 | let a, b;
+   : ^
    `----
 
   x define-plugin-and-rule-plugin(create): create body:
@@ -136,29 +136,7 @@
    : ^
    `----
 
-  x define-plugin-and-rule-plugin(create-once): after hook:
-  | identNum: 2
-  | filename: files/2.js
-   ,-[files/2.js:1:1]
- 1 | let c, d;
-   : ^
-   `----
-
-  x define-plugin-and-rule-plugin(create-once-after-only): after hook:
-  | filename: files/2.js
-   ,-[files/2.js:1:1]
- 1 | let c, d;
-   : ^
-   `----
-
   x define-plugin-and-rule-plugin(create-once-before-false): before hook:
-  | filename: files/2.js
-   ,-[files/2.js:1:1]
- 1 | let c, d;
-   : ^
-   `----
-
-  x define-plugin-and-rule-plugin(create-once-before-false): after hook:
   | filename: files/2.js
    ,-[files/2.js:1:1]
  1 | let c, d;
@@ -187,13 +165,6 @@
    :     ^
    `----
 
-  x define-plugin-and-rule-plugin(create-once-after-only): ident visit fn "c":
-  | filename: files/2.js
-   ,-[files/2.js:1:5]
- 1 | let c, d;
-   :     ^
-   `----
-
   x define-plugin-and-rule-plugin(create-once-before-false): ident visit fn "c":
   | filename: files/2.js
    ,-[files/2.js:1:5]
@@ -202,6 +173,13 @@
    `----
 
   x define-plugin-and-rule-plugin(create-once-before-only): ident visit fn "c":
+  | filename: files/2.js
+   ,-[files/2.js:1:5]
+ 1 | let c, d;
+   :     ^
+   `----
+
+  x define-plugin-and-rule-plugin(create-once-after-only): ident visit fn "c":
   | filename: files/2.js
    ,-[files/2.js:1:5]
  1 | let c, d;
@@ -230,13 +208,6 @@
    :        ^
    `----
 
-  x define-plugin-and-rule-plugin(create-once-after-only): ident visit fn "d":
-  | filename: files/2.js
-   ,-[files/2.js:1:8]
- 1 | let c, d;
-   :        ^
-   `----
-
   x define-plugin-and-rule-plugin(create-once-before-false): ident visit fn "d":
   | filename: files/2.js
    ,-[files/2.js:1:8]
@@ -251,11 +222,40 @@
    :        ^
    `----
 
+  x define-plugin-and-rule-plugin(create-once-after-only): ident visit fn "d":
+  | filename: files/2.js
+   ,-[files/2.js:1:8]
+ 1 | let c, d;
+   :        ^
+   `----
+
   x define-plugin-and-rule-plugin(create-once-no-hooks): ident visit fn "d":
   | filename: files/2.js
    ,-[files/2.js:1:8]
  1 | let c, d;
    :        ^
+   `----
+
+  x define-plugin-and-rule-plugin(create-once): after hook:
+  | identNum: 2
+  | filename: files/2.js
+   ,-[files/2.js:1:1]
+ 1 | let c, d;
+   : ^
+   `----
+
+  x define-plugin-and-rule-plugin(create-once-before-false): after hook:
+  | filename: files/2.js
+   ,-[files/2.js:1:1]
+ 1 | let c, d;
+   : ^
+   `----
+
+  x define-plugin-and-rule-plugin(create-once-after-only): after hook:
+  | filename: files/2.js
+   ,-[files/2.js:1:1]
+ 1 | let c, d;
+   : ^
    `----
 
 Found 0 warnings and 35 errors.

@@ -42,14 +42,6 @@
  2 | 
    `----
 
-  x source-code-plugin(create-once): after:
-  | source: "let foo, bar;\n\n// x\n// y\n"
-   ,-[files/1.js:1:1]
- 1 | let foo, bar;
-   : ^
- 2 | 
-   `----
-
   x source-code-plugin(create-once): before:
   | text: "let foo, bar;\n\n// x\n// y\n"
   | getText(): "let foo, bar;\n\n// x\n// y\n"
@@ -157,6 +149,14 @@
  2 | 
    `----
 
+  x source-code-plugin(create-once): after:
+  | source: "let foo, bar;\n\n// x\n// y\n"
+   ,-[files/1.js:1:1]
+ 1 | let foo, bar;
+   : ^
+ 2 | 
+   `----
+
   x source-code-plugin(create): create:
   | text: "let qux;\n"
   | getText(): "let qux;\n"
@@ -174,13 +174,6 @@
   |   9 => { line: 2, column: 0 }("<EOF>")
   | ast: "qux"
   | visitorKeys: left, right
-   ,-[files/2.js:1:1]
- 1 | let qux;
-   : ^
-   `----
-
-  x source-code-plugin(create-once): after:
-  | source: "let qux;\n"
    ,-[files/2.js:1:1]
  1 | let qux;
    : ^
@@ -244,6 +237,13 @@
    ,-[files/2.js:1:5]
  1 | let qux;
    :     ^^^
+   `----
+
+  x source-code-plugin(create-once): after:
+  | source: "let qux;\n"
+   ,-[files/2.js:1:1]
+ 1 | let qux;
+   : ^
    `----
 
 Found 0 warnings and 16 errors.
